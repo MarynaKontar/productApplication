@@ -44,8 +44,8 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public List<Product> findByCostLike(BigDecimal cost) {
-        return dao.findByCostLike(cost);
+    public List<Product> findByNameLike(String name) {
+        return dao.findByNameLike(name);
     }
 
     @Transactional(readOnly = true)

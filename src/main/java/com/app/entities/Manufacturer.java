@@ -17,5 +17,9 @@ public class Manufacturer {
     @Column(name = "manufacturer_phoneNumber")
     private String phoneNumber;
 
+    public Manufacturer() {
+    }
 
+    public Manufacturer(String farm, String s, String s1) {
+    }
 }

@@ -25,6 +25,6 @@ public interface ProductDao extends JpaRepository<Product, Long> {
 
     // Custom search can be added here too.
     // Также можно добавить функцию, которая будет использовать persistent query language (jpql)
-    @Query("select product from Product product where product.cost like ?1")
-    List<Product> findByCostLike(BigDecimal cost);
+    @Query("select product from Product product where product.name like ?1")
+    List<Product> findByNameLike(String name);
 }

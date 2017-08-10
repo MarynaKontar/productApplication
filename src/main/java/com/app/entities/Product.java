@@ -9,6 +9,7 @@ import java.sql.Timestamp;
  * Created by User on 09.08.2017.
  */
 @Entity
+@Table(name = "products")
 public class Product {
 
     @Id
