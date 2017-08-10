@@ -16,10 +16,38 @@ public class Manufacturer {
     private String adress;
     @Column(name = "manufacturer_phoneNumber")
     private String phoneNumber;
+//    private List<String> phoneNumber;
 
     public Manufacturer() {
     }
 
-    public Manufacturer(String farm, String s, String s1) {
+    public Manufacturer(String name, String adress, String phoneNumber) {
+        this.name = name;
+        this.adress = adress;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

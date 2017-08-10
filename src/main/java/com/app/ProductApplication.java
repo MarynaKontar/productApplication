@@ -31,9 +31,9 @@ public class ProductApplication {
             Manufacturer manufacturer = new Manufacturer("Farm", "some selo", "333 55 78");
             product.setManufacturer(manufacturer);
 
-//            service.save(product);
+            service.save(product);
             product.setCost(BigDecimal.valueOf(20));
-//            service.save(product);
+            service.save(product);
             product.setFinalStorageDate(new Timestamp(118,2,10,11,59,59,10));
             service.save(product);
             product.setName("pineapple");
@@ -46,9 +46,9 @@ public class ProductApplication {
             List<Product> result = service.findByNameLike("%apple%");
             logger.info("Products are {}", all);
 
-//            System.out.println(service.findOne(1L));
-//            System.out.println(service.findOne(2L));
-//            System.out.println(service.getOne(3L));
+            System.out.println(service.findOne(1L));
+            System.out.println(service.findOne(2L));
+            service.getOne(3L);// не хочет выводить на консоль: выдает ошибку Exception in thread "main" org.hibernate.LazyInitializationException: could not initialize proxy - no Session
 //            System.out.println(service.getOne(4L));
         }
     }
