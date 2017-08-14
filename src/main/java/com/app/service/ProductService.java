@@ -82,4 +82,8 @@ public class ProductService {
     public Product getOne(Long id) {
         return dao.getOne(id);
     }
+
+    public <S extends Product> List<S> save(Iterable<S> entities) {
+        return dao.save(entities);
+    }
 }

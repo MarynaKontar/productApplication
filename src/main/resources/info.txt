@@ -1,0 +1,9 @@
+1.написала через Spring Data Jpa. Т.е. не пишу реализацию dao, она подставляется spring
+(SimpleJpaRepository - имплементирующий JpaRepository)
+
+ При использовании Spring Data Jpa методы в конфигурации ApplicationConfiguration пишутся немного по-другому:
+  - FactoryBean получаем через LocalContainerEntityManagerFactoryBean и в нем вместо Properties используем более "продвинутую"
+ обертку HibernateJpaVendorAdapter
+  - вместо TransactionManager используем JpaTransactionManager
+  - BasicDataSource - такой же как и при соеденении Spring с Hibernate без Spring Data Jpa.
+  2. добавляю web app: папку webapp с web.xml добавила; WebConfiguration, SpringWebApplication

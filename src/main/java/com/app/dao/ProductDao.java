@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface ProductDao extends JpaRepository<Product, Long> {
     // To use JPA repository you have to extend JpaRepository interface.
-    // Не надо писать реализацию этого интерфейса. Не надо писать @Repo Spring сам найдет реализацию JpaRepository, там будет стандартный набор
+    // Не надо писать реализацию этого интерфейса. Не надо писать @Repository Spring сам найдет реализацию JpaRepository (SimpleJpaRepository), там будет стандартный набор
     // crud и еще добавятся те, что мы здесь добавим из доп. списка (конструируется из ключивых слов:
     // findBy(readFirstBy,...) + назвваниеПоляВProduct + Before(Contains,False, Is,...)) и те, которые пропишем через Query
 

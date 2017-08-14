@@ -95,7 +95,13 @@ public class ApplicationConfiguration {
     // This is bean responsible to population of HSQL Db on start.
     //создаем таблиці в бд с помощью sql, написанного в scriptResource, т.е. в файле tables_creation.sql
     @Bean
-    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
+    public DataSourceInitializer dataSourceInitializer( final DataSource dataSource) {
+        //делаем dataSource final, чтобы никто в этом методе не сделал dataSource=null - будет exception
+//        dataSource.setPassword(password + "t");//если у не final dataSource(только надо тогда передавать BasicDataSource,
+        // а не DataSource) поменять что-то(пароль, например) и удалить таблицу из бд (чтобЫ заново использовался sql
+        // для создания таблицы), то все нормально сработает.
+        // Видимо spring раньше этого метода подсоединяется к бд. Но если dataSource=null - то ошибка
+
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.addScript(scriptResource);
 

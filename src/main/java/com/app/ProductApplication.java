@@ -25,30 +25,30 @@ public class ProductApplication {
             logger.info("Starting product application!");
 
             Product product = new Product();
-            product.setName("apple");
+            product.setName("appleeeee");
             product.setCost(BigDecimal.valueOf(15));
-            product.setFinalStorageDate(new Timestamp(117,11,15,11,59,59,10));
+            product.setFinalStorageDate(new Timestamp(116,11,15,11,59,59,10));
             Manufacturer manufacturer = new Manufacturer("Farm", "some selo", "333 55 78");
             product.setManufacturer(manufacturer);
 
             service.save(product);
-            product.setCost(BigDecimal.valueOf(20));
-            service.save(product);
-            product.setFinalStorageDate(new Timestamp(118,2,10,11,59,59,10));
-            service.save(product);
-            product.setName("pineapple");
-            service.save(product);
-            logger.info("New products inserted!");
-
-            List<Product> all = service.findAll();
-            logger.info("Products are {}", all);
-
-            List<Product> result = service.findByNameLike("%apple%");
-            logger.info("Products are {}", all);
-
-            System.out.println(service.findOne(1L));
-            System.out.println(service.findOne(2L));
-            service.getOne(3L);// не хочет выводить на консоль: выдает ошибку Exception in thread "main" org.hibernate.LazyInitializationException: could not initialize proxy - no Session
+//            product.setCost(BigDecimal.valueOf(20));
+//            service.save(product);// TODO почему делает update?
+//            product.setFinalStorageDate(new Timestamp(118,2,10,11,59,59,10));
+//            service.save(product);
+//            product.setName("pineapple");
+//            service.save(product);
+//            logger.info("New products inserted!");
+//
+//            List<Product> all = service.findAll();
+//            logger.info("Products are {}", all);
+//
+//            List<Product> result = service.findByNameLike("%apple%");
+//            logger.info("Products are {}", all);
+//
+//            System.out.println(service.findOne(1L));
+//            System.out.println(service.findOne(2L));
+//            service.getOne(3L);// не хочет выводить на консоль: выдает ошибку Exception in thread "main" org.hibernate.LazyInitializationException: could not initialize proxy - no Session
 //            System.out.println(service.getOne(4L));
         }
     }
