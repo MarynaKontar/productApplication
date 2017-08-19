@@ -7,3 +7,13 @@
   - вместо TransactionManager используем JpaTransactionManager
   - BasicDataSource - такой же как и при соеденении Spring с Hibernate без Spring Data Jpa.
   2. добавляю web app: папку webapp с web.xml добавила; WebConfiguration, SpringWebApplication
+3.добавила в модель user, UserDao, UserService.
+4. Добавила Spring Security:
+   - SpringSecurityConfiguration extends WebSecurityConfigurerAdapter, в методе configure прописываю users с какими ролями
+    на какие странички могут заходить (antMatchers("/product/list").hasAnyRole("USER", "ADMIN").antMatchers("/product/**").hasRole("ADMIN"))
+5. Добавила SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer
+6. Добавила SpringSecurityConfiguration.class в метод getRootConfigClasses() в SpringWebApplication
+7. Имплементировала UserDetailsService (UserDetailedServiceImpl) в котором реализую метод по нахождению user по username
+(loadUserByUsername(String username)) через репозиторий UserService (userService.findOne(username))
+8. Добавила точки входа - контроллеры для product (ShowProductsController, ProductEndpoints)
+9.также прописала страничку products.jsp для вывода всех products

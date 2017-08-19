@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Data access object for car entity using JPA Spring DATA.
+ * Data access object for Data access object for {@link com.app.entities.Product} using JPA Spring DATA.
  */
 public interface ProductDao extends JpaRepository<Product, Long> {
     // To use JPA repository you have to extend JpaRepository interface.

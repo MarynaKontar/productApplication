@@ -24,32 +24,48 @@ public class ProductApplication {
             ProductService service = context.getBean(ProductService.class);
             logger.info("Starting product application!");
 
-            Product product = new Product();
-            product.setName("appleeeee");
-            product.setCost(BigDecimal.valueOf(15));
-            product.setFinalStorageDate(new Timestamp(116,11,15,11,59,59,10));
-            Manufacturer manufacturer = new Manufacturer("Farm", "some selo", "333 55 78");
-            product.setManufacturer(manufacturer);
-
-            service.save(product);
-//            product.setCost(BigDecimal.valueOf(20));
-//            service.save(product);// TODO почему делает update?
-//            product.setFinalStorageDate(new Timestamp(118,2,10,11,59,59,10));
+//            Product product = new Product();
+//            product.setName("appleeeee");
+//            product.setCost(BigDecimal.valueOf(15));
+//            //TODO 2. почему не срабатывает @Future? записывается в БД product с датой из прошлого
+//            product.setFinalStorageDate(new Timestamp(100,11,15,11,59,59,10));
+//            Manufacturer manufacturer = new Manufacturer("Farm", "some selo", "333 55 78");
+//            product.setManufacturer(manufacturer);
 //            service.save(product);
-//            product.setName("pineapple");
-//            service.save(product);
+//
+//            // TODO 3. делает update,а не добавляет новЫй product. Когда первый раз пишем service.save(product)
+//            // объект product становится DETACHED object. У него остается связь с бд
+////            product.setCost(BigDecimal.valueOf(20));
+////            service.save(product);
+//
+//            Product product1 = new Product();
+//            product1.setName("apple");
+//            product1.setCost(BigDecimal.valueOf(25));
+//            product1.setFinalStorageDate(new Timestamp(118,2,10,11,59,59,10));
+//            product1.setManufacturer(manufacturer);
+//            service.save(product1);
+//
+//            Product product2 = new Product();
+//            product2.setName("pineapple");
+//            product2.setCost(BigDecimal.valueOf(30));
+//            product2.setFinalStorageDate(new Timestamp(119,2,10,11,59,59,10));
+//            product2.setManufacturer(manufacturer);
+//            service.save(product2);
+//
 //            logger.info("New products inserted!");
-//
-//            List<Product> all = service.findAll();
-//            logger.info("Products are {}", all);
-//
-//            List<Product> result = service.findByNameLike("%apple%");
-//            logger.info("Products are {}", all);
-//
-//            System.out.println(service.findOne(1L));
-//            System.out.println(service.findOne(2L));
-//            service.getOne(3L);// не хочет выводить на консоль: выдает ошибку Exception in thread "main" org.hibernate.LazyInitializationException: could not initialize proxy - no Session
-//            System.out.println(service.getOne(4L));
+
+            List<Product> all = service.findAll();
+            logger.info("Products are {}", all);
+
+            List<Product> result = service.findByNameLike("%apple%");
+            logger.info("Products are {}", result);
+
+            System.out.println(service.findOne(4L));
+            System.out.println(service.findOne(5L));
+
+            //TODO 4. getOne возврашает proxy, т.е. объект только c id. Другой инф. о product в нем  нет. Используется, если, например, надо user.set(product) - т.е. можно сеттить такой объект
+            service.getOne(6L);
+//            System.out.println(service.getOne(6L));// не выведет на консоль: выдаст ошибку Exception in thread "main" org.hibernate.LazyInitializationException: could not initialize proxy - no Session
         }
     }
 }

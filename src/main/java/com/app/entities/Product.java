@@ -1,7 +1,9 @@
 package com.app.entities;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Future;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -10,6 +12,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "products")
+@Valid
 public class Product {
 
     @Id
@@ -23,7 +26,7 @@ public class Product {
 
     private BigDecimal cost;
 
-    @Future
+    @Future  //TODO 2. почему не срабатывает? записывается в БД product с датой из прошлого
     private Timestamp finalStorageDate;
 
     public String getName() {
