@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: User
-  Date: 18.08.2017
-  Time: 7:34
+  User: andreymi
+  Date: 8/15/2017
+  Time: 9:38 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,18 +11,18 @@
 
 <html>
 <head>
-    <title>Products list</title>
+    <title>Users list</title>
 </head>
 <body>
 <table>
-        <c:forEach var="product" items="${products}">
-            <tr>
-                <td>
-                    <a href="/product/find/${product}">${product}</a>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
+    <c:forEach var="user" items="${users}">
+        <tr>
+            <td>
+                <a href="/user/find/${user}">${user}</a>
+            </td>
+        </tr>
+    </c:forEach>
+</table>
 
 <form action="/user/logout" method="post">
     <input type="submit" value="logout">

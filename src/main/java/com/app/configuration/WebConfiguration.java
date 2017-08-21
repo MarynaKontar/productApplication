@@ -19,8 +19,11 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan("com.app.endpoints")
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
+    //регистрируем как маппить те странички, с которых мы заходим в браузере (html uri) на ресурс в файловой системе
+    // (на папку, где хранятся эти файлы)
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
         super.addResourceHandlers(registry);
     }
 

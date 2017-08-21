@@ -49,11 +49,12 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         // 1. USER can check all products in the system.
         // 2. ADMIN can create, update or remove products.
 
-        http.authorizeRequests().antMatchers("/product/list").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/product/**").hasRole("ADMIN")
+        http.authorizeRequests().antMatchers("/product/list", "user/list").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/product/**","/user/**").hasRole("ADMIN")
                 .anyRequest().denyAll()
+
                 .and()
-                .httpBasic()
+                .formLogin()
                 .and()
                 .csrf().disable();
 

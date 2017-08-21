@@ -1,14 +1,20 @@
 package com.app.endpoints;
 
-import com.app.entities.User;
+import com.app.entities.Manufacturer;
+import com.app.entities.Product;
 import com.app.service.ProductService;
-import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
+import javax.validation.constraints.NotEmpty;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by User on 17.08.2017.
@@ -17,34 +23,40 @@ import javax.annotation.PostConstruct;
 @RequestMapping("/product")
 public class ProductEndpoints {
 
-    private final UserService userService;
+
     private final ProductService productService;
-    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ProductEndpoints(UserService userService,
-                            ProductService productService, PasswordEncoder passwordEncoder) {
-        this.userService = userService;
+    public ProductEndpoints(ProductService productService) {
         this.productService = productService;
-        this.passwordEncoder = passwordEncoder;
     }
 
-//    @PostConstruct
-//    public void initDefaultUsers() {
-//        User user1 = new User();
-//        user1.setUsername("admin1");
-//        user1.setPassword(passwordEncoder.encode("admin1"));
-//        user1.setAdministrator(true);
-//
-//        userService.save(user1);
-//
-//        User user2 = new User();
-//        user2.setUsername("userrr");
-//        user2.setPassword(passwordEncoder.encode("userrr"));
-//        user2.setAdministrator(false);
-//
-//        userService.save(user2);
-//    }
+    @RequestMapping(method = RequestMethod.GET, value = "/list")
+    public String listAllProducts(){
+        return productService.findAll().stream().map(Product::toString).collect(Collectors.joining(";"));
 
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/create", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<Product> createProduct(@NotEmpty String name,
+                                                 @NotEmpty BigDecimal cost,
+                                                 @RequestParam(required = false) Timestamp finalStorageDate,
+                                                 @RequestParam(required = false) Manufacturer manufacturer,
+                                                 @RequestHeader(value = "header", required = false) String header,
+                                                 @CookieValue(value = "y", required = false) String y) throws IOException {
+
+        Product product = new Product();
+        product.setName(name);
+        product.setCost(cost);
+        product.setFinalStorageDate(finalStorageDate);
+        product.setManufacturer(manufacturer);
+        productService.save(product);
+        return ResponseEntity.ok(product);
+    }
+
+    @ExceptionHandler(IOException.class)
+    public ResponseEntity<String> handleIOException(IOException ex) {
+        return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).build();
+    }
 
 }
