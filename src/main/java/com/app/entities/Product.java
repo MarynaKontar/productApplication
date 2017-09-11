@@ -26,8 +26,14 @@ public class Product {
 
     private BigDecimal cost;
 
+    private String description;
+
     @Future  //TODO 2. почему не срабатывает? записывается в БД product с датой из прошлого
     private Timestamp finalStorageDate;
+
+    public long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -53,8 +59,12 @@ public class Product {
         this.cost = cost;
     }
 
-    public long getId() {
-        return id;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Timestamp getFinalStorageDate() {
@@ -72,6 +82,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", manufacturer=" + manufacturer +
                 ", cost=" + cost +
+                ", description='" + description + '\'' +
                 ", finalStorageDate=" + finalStorageDate +
                 '}';
     }

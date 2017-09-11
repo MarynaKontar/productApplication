@@ -18,45 +18,47 @@ import java.util.stream.Collectors;
 
 /**
  * Created by User on 17.08.2017.
- */
-@RestController
-@RequestMapping("/product")
+// */
+//@RestController
+//@RequestMapping("/product")
 public class ProductEndpoints {
 
+//    private final ProductService productService;
 
-    private final ProductService productService;
+//    @Autowired
+//    public ProductEndpoints(ProductService productService) {
+//        this.productService = productService;
+//    }
+//
+//    @RequestMapping(method = RequestMethod.GET, value = "/list")
+//    public String listAllProducts(){
+//        return productService.findAll().stream().map(Product::toString).collect(Collectors.joining(";"));
+//
+//    }
 
-    @Autowired
-    public ProductEndpoints(ProductService productService) {
-        this.productService = productService;
-    }
+//    @RequestMapping(method = RequestMethod.POST, value = "/create", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+//    public ResponseEntity<Product> createProduct(@NotEmpty String name,
+//                                                 @NotEmpty BigDecimal cost,
+//                                                 @RequestParam(required = false) Timestamp finalStorageDate,
+//                                                 @RequestParam(required = false) Manufacturer manufacturer,
+//                                                 @RequestParam(required = false) String description)
+////                                                 @RequestHeader(value = "header", required = false) String header,
+////                                                 @CookieValue(value = "y", required = false) String y)
+//                                                                                                    throws IOException {
+//
+//        Product product = new Product();
+//        product.setName(name);
+//        product.setCost(cost);
+//        product.setFinalStorageDate(finalStorageDate);
+//        product.setManufacturer(manufacturer);
+//        product.setDescription(description);
+//        productService.save(product);
+//        return ResponseEntity.ok(product);
+//    }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/list")
-    public String listAllProducts(){
-        return productService.findAll().stream().map(Product::toString).collect(Collectors.joining(";"));
-
-    }
-
-    @RequestMapping(method = RequestMethod.POST, value = "/create", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Product> createProduct(@NotEmpty String name,
-                                                 @NotEmpty BigDecimal cost,
-                                                 @RequestParam(required = false) Timestamp finalStorageDate,
-                                                 @RequestParam(required = false) Manufacturer manufacturer,
-                                                 @RequestHeader(value = "header", required = false) String header,
-                                                 @CookieValue(value = "y", required = false) String y) throws IOException {
-
-        Product product = new Product();
-        product.setName(name);
-        product.setCost(cost);
-        product.setFinalStorageDate(finalStorageDate);
-        product.setManufacturer(manufacturer);
-        productService.save(product);
-        return ResponseEntity.ok(product);
-    }
-
-    @ExceptionHandler(IOException.class)
-    public ResponseEntity<String> handleIOException(IOException ex) {
-        return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).build();
-    }
+//    @ExceptionHandler(IOException.class)
+//    public ResponseEntity<String> handleIOException(IOException ex) {
+//        return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).build();
+//    }
 
 }

@@ -18,10 +18,11 @@
         <c:forEach var="product" items="${products}">
             <tr>
                 <td>
-                    <a href="/product/find/${product}">${product}</a>
+                    <a  href="/product/find/${product.id}" >${product.name}</a>
                 </td>
             </tr>
         </c:forEach>
+    <a href="#top">Go to top</a>
     </table>
 
 <form action="/user/logout" method="post">

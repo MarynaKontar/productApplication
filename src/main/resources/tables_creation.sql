@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `name`        VARCHAR(455) DEFAULT NULL,
   `cost`        DECIMAL DEFAULT NULL,
   `finalStorageDate` TIMESTAMP,
+  `description` VARCHAR(4000) DEFAULT NULL ,
   `manufacturer_name` VARCHAR(455) DEFAULT NULL,
   `manufacturer_adress` VARCHAR(455) DEFAULT NULL,
   `manufacturer_phoneNumber` VARCHAR(455) DEFAULT NULL,

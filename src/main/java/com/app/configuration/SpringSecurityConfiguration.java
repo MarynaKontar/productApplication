@@ -49,7 +49,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         // 1. USER can check all products in the system.
         // 2. ADMIN can create, update or remove products.
 
-        http.authorizeRequests().antMatchers("/product/list", "user/list").hasAnyRole("USER", "ADMIN")
+        http.authorizeRequests().antMatchers("/product/showAll", "user/show").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/product/**","/user/**").hasRole("ADMIN")
                 .anyRequest().denyAll()
 
@@ -69,6 +69,15 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //             .and()
 //                .csrf()
 //                .disable();
+
+
+//        // 1. USER can check all users in the system.
+//        // 2. ADMIN can create, update or remove users.
+//        http.authorizeRequests().antMatchers("/user", "/products/action/read").hasAnyRole("USER", "ADMIN")
+//                .antMatchers("/user/**", "/products/action/**")
+//                .hasRole("ADMIN").and().formLogin().successForwardUrl("/user/admin");
+
+
     }
 
 //Можно самому написать AuthenticationProvider, т.е. новый способ аутентификации user. Для этого надо создать бин (newProvider()).

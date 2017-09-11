@@ -20,6 +20,7 @@
         <td>name</td>
         <td>cost</td>
         <td>finalStorageDate</td>
+        <td>description</td>
         <s:authorize access="hasRole('ADMIN')"> <%--"hasAnyRole("USER", "ADMIN")" - если для нескольких ролей--%>
             <td>id</td> <%-- надпись id и manufacturer показываем только админу - прописываем authorize для тех полей, которые д.б. видны только определенным ролям--%>
             <td>manufacturer</td>
@@ -30,6 +31,7 @@
             <td>${product.name}</td>
             <td>${product.cost}</td>
             <td>${product.finalStorageDate}</td>
+            <td>${product.description}</td>
             <s:authorize access="hasAnyRole('ADMIN','USER')">
                 <td>${product.id}</td> <%-- id и manufacturer показываем только админу--%>
                 <td>${product.manufacturer.name}</td>

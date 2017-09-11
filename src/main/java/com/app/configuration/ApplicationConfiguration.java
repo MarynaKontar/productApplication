@@ -33,19 +33,14 @@ public class ApplicationConfiguration {
 
     @Value("${db.url}")
     private String url;
-
     @Value("${db.username}")
     private String username;
-
     @Value("${db.password}")
     private String password;
-
     @Value("${db.driver}")
     private String driverClass;
-
     @Value("${db.dialect}")
     private String hibernateDialect;
-
     //указываю путь в classpath (все,что находится в папке resources - в classpath) к sql для создания таблиц, которые будут создаваться в методе dataSourceInitializer
     @Value("classpath:tables_creation.sql")
     private Resource scriptResource;
@@ -62,6 +57,15 @@ public class ApplicationConfiguration {
         return dataSource;
     }
 
+//    @Bean
+//    public DataSource dataSource() throws PropertyVetoException {
+//        HikariDataSource dataSource = new HikariDataSource();
+//        dataSource.setDriverClassName(driver);
+//        dataSource.setJdbcUrl(url);
+//        dataSource.setUsername(userName);
+//        dataSource.setPassword(password);
+//        return dataSource;
+//    }
     /**
      * Create now bean as wrapper over {@link javax.persistence.EntityManagerFactory}
      * Используем не интерфейс (EntityManagerFactory), а его реализацию (LocalContainerEntityManagerFactoryBean), т.к.
